@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "minecraft:redstone_block"
+    },
+    "2": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "1": {
+      "item": "minecraft:iron_ingot"
+    },
+    "0": {
+      "item": "amethystplus:battery"
+    }
+  },
+  "pattern": [
+    "232",
+    "222",
+    "101"
+  ],
+  "result": {
+    "item": "amethystplus:charging_station",
+    "count": 1
+  }
+}

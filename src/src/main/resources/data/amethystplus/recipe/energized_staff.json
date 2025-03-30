@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "3": {
+      "item": "amethystplus:charged_amethyst_shard"
+    },
+    "2": {
+      "item": "amethystplus:battery"
+    },
+    "1": {
+      "item": "amethystplus:iron_stick"
+    }
+  },
+  "pattern": [
+    "  3",
+    " 2 ",
+    "1  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "amethystplus:energized_staff"
+  }
+}

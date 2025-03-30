@@ -1,0 +1,11 @@
+{
+  "item.amethystplus.iron_stick": "Iron Stick",
+  "item.amethystplus.charged_amethyst_shard": "Charged Amethyst Shard",
+  "item.amethystplus.battery": "Battery",
+  "item.amethystplus.energized_staff": "Energized Staff MK1",
+
+  "itemGroup.amethystplus.energized_staff": "Amethyst Plus",
+
+  "block.amethystplus.charging_station": "Charging Station",
+  "item.amethystplus.energized_staff.full": "The Staff Is Full!"
+}

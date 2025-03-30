@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "3": {
+      "item": "minecraft:iron_ingot"
+    },
+    "2": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    " 3 ",
+    " 2 "
+  ],
+  "result": {
+    "count": 1,
+    "id": "amethystplus:iron_stick"
+  }
+}

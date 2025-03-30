@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "amethystplus:item/charged_amethyst_shard"
+  }
+}

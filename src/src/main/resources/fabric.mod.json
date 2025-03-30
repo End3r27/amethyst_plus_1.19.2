@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "amethystplus",
+	"version": "0.0.1",
+	"name": "Amethyst Plus",
+	"description": "a mod that aims on expanding the uses of amethyst!",
+	"authors": [
+		"end3r_27"
+	],
+	"license": "MIT",
+	"icon": "assets/amethystplus/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"end3r.amethystplus.AmethystPlus"
+		],
+		"fabric-datagen": [
+			"end3r.amethystplus.AmethystPlusDataGenerator"
+		],
+		"client": [
+			"end3r.amethystplus.AmethystPlusClient"
+		]
+	},
+	"mixins": [
+		"amethystplus.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*",
+	},
+	"suggests": {
+	}
+
+}
