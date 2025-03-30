@@ -3,9 +3,12 @@
   "item.amethystplus.charged_amethyst_shard": "Charged Amethyst Shard",
   "item.amethystplus.battery": "Battery",
   "item.amethystplus.energized_staff": "Energized Staff MK1",
+  "item.amethystplus.energized_staffmk2": "Energized Staff MK2",
 
   "itemGroup.amethystplus.energized_staff": "Amethyst Plus",
 
-  "block.amethystplus.charging_station": "Charging Station",
+  "block.amethystplus.charging_station": "Charging Station MK1",
+  "block.amethystplus.charging_stationmk2": "Charging Station MK2",
+
   "item.amethystplus.energized_staff.full": "The Staff Is Full!"
 }
