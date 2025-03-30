@@ -1,26 +1,25 @@
 package end3r.amethystplus.item;
 
-import java.util.List;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.minecraft.entity.damage.DamageSource;
 import org.jetbrains.annotations.Nullable;
 
-public class EffectEnergizedStaff extends Item {
-    private static final int MAX_ENERGY = 20000; // Maximum energy the item can hold
-    private static final int ENERGY_PER_HIT = 200; // Energy cost per hit
+import java.util.List;
 
-    public EffectEnergizedStaff(Settings settings) {
+public class EffectEnergizedStaffMK2 extends Item {
+    private static final int MAX_ENERGY = 50000; // Maximum energy the item can hold
+    private static final int ENERGY_PER_HIT = 250; // Energy cost per hit
+
+    public EffectEnergizedStaffMK2(Settings settings) {
         super(settings);
     }
 
@@ -44,10 +43,10 @@ public class EffectEnergizedStaff extends Item {
             // Check if the item has enough energy
             int currentEnergy = getEnergy(stack);
             if (currentEnergy >= ENERGY_PER_HIT) {
-                target.setOnFireFor(4); // Sets entity on fire for 4 seconds
+                target.setOnFireFor(6); // Sets entity on fire for 6 seconds
 
                 if (attacker instanceof PlayerEntity player) {
-                    target.damage(DamageSource.player(player), 5.0F); // Deals 5 extra damage
+                    target.damage(DamageSource.player(player), 7.0F); // Deals 7 extra damage
                 }
 
                 // Consume energy
@@ -83,7 +82,7 @@ public class EffectEnergizedStaff extends Item {
 
     @Override
     public int getItemBarColor(ItemStack stack) {
-        return 0xAA00FF; // Purple color for the energy bar
+        return 0x9EFFF2; // Purple color for the energy bar
 
     }
     @Override
@@ -109,7 +108,7 @@ public class EffectEnergizedStaff extends Item {
 
         // Create the tooltip text with the energy values
         MutableText energyText = Text.literal(currentEnergy + "AE / " + MAX_ENERGY + "AE")
-                .formatted(Formatting.AQUA); // Formats the text in aqua
+                .formatted(Formatting.DARK_AQUA); // Formats the text in dark aqua
 
         // Add the energy text to the tooltip
         tooltip.add(energyText);

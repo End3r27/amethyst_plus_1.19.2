@@ -1,6 +1,7 @@
 package end3r.amethystplus.block;
 
 import end3r.amethystplus.item.EffectEnergizedStaff;
+import end3r.amethystplus.item.EffectEnergizedStaffMK2;
 import end3r.amethystplus.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -19,11 +20,11 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ChargingStationBlock extends Block {
+public class ChargingStationBlockMK2 extends Block {
     // Optional property to visually indicate "charging"
     public static final BooleanProperty ACTIVE = Properties.LIT;
 
-    public ChargingStationBlock(Settings settings) {
+    public ChargingStationBlockMK2(Settings settings) {
         super(settings);
         // Initialize the default block state with ACTIVE = false
         this.setDefaultState(this.stateManager.getDefaultState().with(ACTIVE, false));
@@ -42,18 +43,18 @@ public class ChargingStationBlock extends Block {
             ItemStack heldItem = player.getStackInHand(hand);
 
             // Check if the player is holding the energized staff
-            if (heldItem.getItem() == ModItems.ENERGIZED_STAFF) {
-                EffectEnergizedStaff staff = (EffectEnergizedStaff) heldItem.getItem();
+            if (heldItem.getItem() == ModItems.ENERGIZED_STAFFMK2) {
+                EffectEnergizedStaffMK2 staff = (EffectEnergizedStaffMK2) heldItem.getItem();
 
                 // Get the current energy using getEnergy
                 int currentEnergy = staff.getEnergy(heldItem);
 
                 // Define the max energy (you can also call `staff.MAX_ENERGY` directly if it's accessible)
-                int maxEnergy = 20000;
+                int maxEnergy = 50000;
 
                 // Add 2000 energy but ensure it doesn't exceed the max
                 if (currentEnergy < maxEnergy) {
-                    int newEnergy = Math.min(currentEnergy + 2000, maxEnergy);
+                    int newEnergy = Math.min(currentEnergy + 5000, maxEnergy);
 
                     // Use setEnergy to update the NBT
                     staff.setEnergy(heldItem, newEnergy);
@@ -74,14 +75,14 @@ public class ChargingStationBlock extends Block {
             }
 
             // Check if the player is holding an amethyst shard (keep original behavior)
-            if (heldItem.getItem() == Items.AMETHYST_SHARD) {
+            if (heldItem.getItem() == ModItems.CHARGED_AMETHYST_SHARD) {
                 // Decrease the item stack by 1
                 heldItem.decrement(1);
 
                 // Give the player a charged amethyst shard
-                if (!player.giveItemStack(new ItemStack(ModItems.CHARGED_AMETHYST_SHARD))) {
+                if (!player.giveItemStack(new ItemStack(ModItems.OVERCHARGED_AMETHYST_SHARD))) {
                     // Drop the item in the world if the player's inventory is full
-                    player.dropItem(new ItemStack(ModItems.CHARGED_AMETHYST_SHARD), false);
+                    player.dropItem(new ItemStack(ModItems.OVERCHARGED_AMETHYST_SHARD), false);
                 }
 
                 // Play a sound effect

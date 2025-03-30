@@ -12,10 +12,14 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item CHARGED_AMETHYST_SHARD = registerItem("charged_amethyst_shard",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item OVERCHARGED_AMETHYST_SHARD = registerItem("overcharged_amethyst_shard",
+            new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item BATTERY = registerItem("battery",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item ENERGIZED_STAFF = registerItem("energized_staff",
             new EffectEnergizedStaff(new FabricItemSettings().maxCount(1).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item ENERGIZED_STAFFMK2 = registerItem("energized_staffmk2",
+            new EffectEnergizedStaffMK2(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
 
 
     private static Item registerItem(String name, Item item) {
