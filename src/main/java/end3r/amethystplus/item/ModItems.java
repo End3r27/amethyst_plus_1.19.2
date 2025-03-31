@@ -10,11 +10,15 @@ import net.minecraft.util.registry.Registry;
 public class ModItems {
     public static final Item IRON_STICK = registerItem("iron_stick",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item DIAMOND_STICK = registerItem("diamond_stick",
+            new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item CHARGED_AMETHYST_SHARD = registerItem("charged_amethyst_shard",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item OVERCHARGED_AMETHYST_SHARD = registerItem("overcharged_amethyst_shard",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item BATTERY = registerItem("battery",
+            new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item BATTERYMK2 = registerItem("batterymk2",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item ENERGIZED_STAFF = registerItem("energized_staff",
             new EffectEnergizedStaff(new FabricItemSettings().maxCount(1).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));

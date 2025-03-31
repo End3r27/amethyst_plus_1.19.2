@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "minecraft:redstone_block"
+    },
+    "2": {
+      "item": "amethystplus:battery"
+    },
+    "1": {
+      "item": "minecraft:diamond"
+    },
+    "0": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "pattern": [
+    "131",
+    "020",
+    "101"
+  ],
+  "result": {
+    "item": "amethystplus:batterymk2",
+    "count": 1
+  }
+}

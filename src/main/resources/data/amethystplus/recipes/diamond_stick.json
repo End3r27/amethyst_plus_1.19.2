@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "minecraft:diamond"
+    },
+    "2": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "   ",
+    " 3 ",
+    " 2 "
+  ],
+  "result": {
+    "item": "amethystplus:diamond_stick",
+    "count": 1
+  }
+}

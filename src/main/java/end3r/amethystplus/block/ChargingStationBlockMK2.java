@@ -1,13 +1,11 @@
 package end3r.amethystplus.block;
 
-import end3r.amethystplus.item.EffectEnergizedStaff;
 import end3r.amethystplus.item.EffectEnergizedStaffMK2;
 import end3r.amethystplus.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;

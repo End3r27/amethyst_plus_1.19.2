@@ -1,7 +1,10 @@
 {
   "item.amethystplus.iron_stick": "Iron Stick",
+  "item.amethystplus.diamond_stick": "Diamond Stick",
   "item.amethystplus.charged_amethyst_shard": "Charged Amethyst Shard",
+  "item.amethystplus.overcharged_amethyst_shard": "Overcharged Amethyst Shard",
   "item.amethystplus.battery": "Battery",
+  "item.amethystplus.batterymk2": "Battery MK2",
   "item.amethystplus.energized_staff": "Energized Staff MK1",
   "item.amethystplus.energized_staffmk2": "Energized Staff MK2",
 

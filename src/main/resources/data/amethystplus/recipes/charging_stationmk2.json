@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "amethystplus:charging_station"
+    },
+    "2": {
+      "item": "amethystplus:charged_amethyst_shard"
+    },
+    "1": {
+      "item": "minecraft:diamond"
+    },
+    "0": {
+      "item": "amethystplus:batterymk2"
+    }
+  },
+  "pattern": [
+    "232",
+    "222",
+    "101"
+  ],
+  "result": {
+    "item": "amethystplus:charging_stationmk2",
+    "count": 1
+  }
+}
