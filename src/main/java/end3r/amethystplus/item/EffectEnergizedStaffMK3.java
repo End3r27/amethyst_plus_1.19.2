@@ -108,6 +108,9 @@ public class EffectEnergizedStaffMK3 extends Item {
         tooltip.add(energyText);
     }
     // Override inventoryTick() to apply Speed 2
-
-
+// Utility to get the energy percentage for rendering purposes
+    public float getEnergyPercentage(ItemStack stack) {
+        int currentEnergy = getEnergy(stack);
+        return (float) currentEnergy / MAX_ENERGY; // Returns a value between 0.0 and 1.0
+    }
 }
