@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -15,11 +16,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class EffectEnergizedStaffMK2 extends Item {
-    private static final int MAX_ENERGY = 50000; // Maximum energy the item can hold
-    private static final int ENERGY_PER_HIT = 250; // Energy cost per hit
+public class EffectEnergizedStaffMK3 extends Item {
+    private static final int MAX_ENERGY = 100000; // Maximum energy the item can hold
+    private static final int ENERGY_PER_HIT = 500; // Energy cost per hit
 
-    public EffectEnergizedStaffMK2(Settings settings) {
+    public EffectEnergizedStaffMK3(Settings settings) {
         super(settings);
     }
 
@@ -51,6 +52,21 @@ public class EffectEnergizedStaffMK2 extends Item {
                 LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
                 lightning.setPos(target.getX(), target.getY(), target.getZ());
                 world.spawnEntity(lightning);
+            }
+
+            // Add a custom VFX (particle effect) at the target's position
+            if (world.isClient) { // Ensure particle effects run only on the client side
+                for (int i = 0; i < 20; i++) {
+                    world.addParticle(
+                            ParticleTypes.END_ROD, // Replace with desired particle type
+                            target.getX() + (world.random.nextDouble() - 0.5), // Random X offset
+                            target.getY() + world.random.nextDouble() * 2,     // Random Y offset
+                            target.getZ() + (world.random.nextDouble() - 0.5), // Random Z offset
+                            0,    // X velocity
+                            0.1,  // Y velocity
+                            0     // Z velocity
+                    );
+                }
             }
         } else
             // Optional: Notify the player they're out of energy
@@ -105,5 +121,4 @@ public class EffectEnergizedStaffMK2 extends Item {
         MutableText energyText = Text.literal(energy + "AE / " + MAX_ENERGY + "AE").formatted(Formatting.LIGHT_PURPLE);
         tooltip.add(energyText);
     }
-
 }
