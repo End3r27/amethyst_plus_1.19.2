@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "2": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "   ",
+    " 3 ",
+    " 2 "
+  ],
+  "result": {
+    "item": "amethystplus:netherite_stick",
+    "count": 1
+  }
+}

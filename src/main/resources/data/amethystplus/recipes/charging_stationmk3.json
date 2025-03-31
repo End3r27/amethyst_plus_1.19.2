@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "amethystplus:charging_stationmk2"
+    },
+    "2": {
+      "item": "amethystplus:overcharged_amethyst_shard"
+    },
+    "1": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "0": {
+      "item": "amethystplus:batterymk3"
+    }
+  },
+  "pattern": [
+    "232",
+    "222",
+    "101"
+  ],
+  "result": {
+    "item": "amethystplus:charging_stationmk3",
+    "count": 1
+  }
+}

@@ -19,6 +19,9 @@ public class ModBlocks {
     public static final Block CHARGING_STATIONMK2 = registerBlock("charging_stationmk2",
             new ChargingStationBlockMK2(FabricBlockSettings.of(Material.METAL)
                     .strength(5f).requiresTool().nonOpaque()), ModItemGroups.ENERGIZED_STAFF_GROUP);
+    public static final Block CHARGING_STATIONMK3 = registerBlock("charging_stationmk3",
+            new ChargingStationBlockMK3(FabricBlockSettings.of(Material.METAL)
+                    .strength(5f).requiresTool().nonOpaque()), ModItemGroups.ENERGIZED_STAFF_GROUP);
 
     private static Block registerBlockWithoutItem(String name, Block block) {
         return Registry.register(Registry.BLOCK, new Identifier(AmethystPlus.MOD_ID, name), block);

@@ -12,13 +12,19 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item DIAMOND_STICK = registerItem("diamond_stick",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item NETHERITE_STICK = registerItem("netherite_stick",
+            new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item CHARGED_AMETHYST_SHARD = registerItem("charged_amethyst_shard",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item OVERCHARGED_AMETHYST_SHARD = registerItem("overcharged_amethyst_shard",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item HYPERCHARGED_AMETHYST_SHARD = registerItem("hypercharged_amethyst_shard",
+            new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item BATTERY = registerItem("battery",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item BATTERYMK2 = registerItem("batterymk2",
+            new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    public static final Item BATTERYMK3 = registerItem("batterymk3",
             new Item(new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item ENERGIZED_STAFF = registerItem("energized_staff",
             new EffectEnergizedStaff(new FabricItemSettings().maxCount(1).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));

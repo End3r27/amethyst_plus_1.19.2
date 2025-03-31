@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "3": {
+      "item": "amethystplus:hypercharged_amethyst_shard"
+    },
+    "2": {
+      "item": "amethystplus:batterymk3"
+    },
+    "1": {
+      "item": "amethystplus:netherite_stick"
+    }
+  },
+  "pattern": [
+    "  3",
+    " 2 ",
+    "1  "
+  ],
+  "result": {
+    "item": "amethystplus:energized_staffmk3",
+    "count": 1
+  }
+}
