@@ -4,10 +4,12 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -18,7 +20,7 @@ import java.util.List;
 
 public class EffectEnergizedStaffMK3 extends Item {
     private static final int MAX_ENERGY = 100000; // Maximum energy the item can hold
-    private static final int ENERGY_PER_HIT = 500; // Energy cost per hit
+    private static final int ENERGY_PER_HIT = 350; // Energy cost per hit
 
     public EffectEnergizedStaffMK3(Settings settings) {
         super(settings);
@@ -38,43 +40,27 @@ public class EffectEnergizedStaffMK3 extends Item {
     }
 
     // Called when attacking an entity
-    @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        int currentEnergy = getEnergy(stack);
+        if (!attacker.getWorld().isClient) { // Server-side only
+            // Check if the item has enough energy
+            int currentEnergy = getEnergy(stack);
+            if (currentEnergy >= ENERGY_PER_HIT) {
+                target.setOnFireFor(8); // Sets entity on fire for 8 seconds
 
-        if (currentEnergy >= ENERGY_PER_HIT) {
-            // Deduce energy for the effect
-            setEnergy(stack, currentEnergy - ENERGY_PER_HIT);
+                if (attacker instanceof PlayerEntity player) {
+                    target.damage(DamageSource.player(player), 9.0F); // Deals 9 extra damage
+                }
 
-            // Summon a lightning bolt at the target's position
-            World world = target.getWorld();
-            if (!world.isClient) { // Ensure this happens only on the server side
-                LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-                lightning.setPos(target.getX(), target.getY(), target.getZ());
-                world.spawnEntity(lightning);
-            }
-
-            // Add a custom VFX (particle effect) at the target's position
-            if (world.isClient) { // Ensure particle effects run only on the client side
-                for (int i = 0; i < 20; i++) {
-                    world.addParticle(
-                            ParticleTypes.END_ROD, // Replace with desired particle type
-                            target.getX() + (world.random.nextDouble() - 0.5), // Random X offset
-                            target.getY() + world.random.nextDouble() * 2,     // Random Y offset
-                            target.getZ() + (world.random.nextDouble() - 0.5), // Random Z offset
-                            0,    // X velocity
-                            0.1,  // Y velocity
-                            0     // Z velocity
-                    );
+                // Consume energy
+                setEnergy(stack, currentEnergy - ENERGY_PER_HIT);
+            } else {
+                // Optional: Notify the player they're out of energy
+                if (attacker instanceof PlayerEntity player) {
+                    player.sendMessage(Text.of("Not enough energy!"), true);
                 }
             }
-        } else
-            // Optional: Notify the player they're out of energy
-            if (attacker instanceof PlayerEntity player) {
-                player.sendMessage(Text.of("Not enough energy!"), true);
-            }
-
-        return super.postHit(stack, target, attacker); // Call the superclass implementation
+        }
+        return true;
     }
 
     // Makes the item start with 0 energy when crafted
@@ -121,4 +107,7 @@ public class EffectEnergizedStaffMK3 extends Item {
         MutableText energyText = Text.literal(energy + "AE / " + MAX_ENERGY + "AE").formatted(Formatting.LIGHT_PURPLE);
         tooltip.add(energyText);
     }
+    // Override inventoryTick() to apply Speed 2
+
+
 }

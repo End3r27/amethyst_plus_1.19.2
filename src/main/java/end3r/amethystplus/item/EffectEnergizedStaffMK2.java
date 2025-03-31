@@ -4,6 +4,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,28 +38,27 @@ public class EffectEnergizedStaffMK2 extends Item {
     }
 
     // Called when attacking an entity
-    @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        int currentEnergy = getEnergy(stack);
+        if (!attacker.getWorld().isClient) { // Server-side only
+            // Check if the item has enough energy
+            int currentEnergy = getEnergy(stack);
+            if (currentEnergy >= ENERGY_PER_HIT) {
+                target.setOnFireFor(6); // Sets entity on fire for 6 seconds
 
-        if (currentEnergy >= ENERGY_PER_HIT) {
-            // Deduce energy for the effect
-            setEnergy(stack, currentEnergy - ENERGY_PER_HIT);
+                if (attacker instanceof PlayerEntity player) {
+                    target.damage(DamageSource.player(player), 7.0F); // Deals 7 extra damage
+                }
 
-            // Summon a lightning bolt at the target's position
-            World world = target.getWorld();
-            if (!world.isClient) { // Ensure this happens only on the server side
-                LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-                lightning.setPos(target.getX(), target.getY(), target.getZ());
-                world.spawnEntity(lightning);
+                // Consume energy
+                setEnergy(stack, currentEnergy - ENERGY_PER_HIT);
+            } else {
+                // Optional: Notify the player they're out of energy
+                if (attacker instanceof PlayerEntity player) {
+                    player.sendMessage(Text.of("Not enough energy!"), true);
+                }
             }
-        } else
-            // Optional: Notify the player they're out of energy
-            if (attacker instanceof PlayerEntity player) {
-                player.sendMessage(Text.of("Not enough energy!"), true);
-            }
-
-        return super.postHit(stack, target, attacker); // Call the superclass implementation
+        }
+        return true;
     }
 
     // Makes the item start with 0 energy when crafted

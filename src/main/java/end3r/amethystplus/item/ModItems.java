@@ -25,7 +25,7 @@ public class ModItems {
     public static final Item ENERGIZED_STAFFMK2 = registerItem("energized_staffmk2",
             new EffectEnergizedStaffMK2(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     public static final Item ENERGIZED_STAFFMK3 = registerItem("energized_staffmk3",
-            new EffectEnergizedStaffMK2(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+            new EffectEnergizedStaffMK3(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
 
 
     private static Item registerItem(String name, Item item) {
