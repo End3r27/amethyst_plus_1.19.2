@@ -1,6 +1,7 @@
 package end3r.amethystplus;
 
 import end3r.amethystplus.armor.ModArmorEffects;
+import end3r.amethystplus.armor.ModArmorEffectsMK1;
 import end3r.amethystplus.armor.ModArmors;
 import end3r.amethystplus.block.ModBlocks;
 import end3r.amethystplus.item.ModItemGroups;
@@ -22,7 +23,7 @@ public class AmethystPlus implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 		ModArmors.registerModArmor();
 		ModArmorEffects.registerEffects();
-
+		ModArmorEffectsMK1.registerEffects();
 
 
 

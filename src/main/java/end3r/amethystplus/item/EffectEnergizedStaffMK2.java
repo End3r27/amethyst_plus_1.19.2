@@ -102,7 +102,7 @@ public class EffectEnergizedStaffMK2 extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         int energy = getEnergy(stack);
-        MutableText energyText = Text.literal(energy + "AE / " + MAX_ENERGY + "AE").formatted(Formatting.LIGHT_PURPLE);
+        MutableText energyText = Text.literal(energy + "AE / " + MAX_ENERGY + "AE").formatted(Formatting.AQUA);
         tooltip.add(energyText);
     }
     // Utility to get the energy percentage for rendering purposes

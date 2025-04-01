@@ -1,12 +1,11 @@
 package end3r.amethystplus.block;
 
+import end3r.amethystplus.armor.EnergizedAmethystArmor;
 import end3r.amethystplus.item.EffectEnergizedStaff;
-import end3r.amethystplus.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -14,6 +13,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -25,83 +25,82 @@ public class ChargingStationBlock extends Block {
 
     public ChargingStationBlock(Settings settings) {
         super(settings);
-        // Initialize the default block state with ACTIVE = false
+        // Initialize block state properties
         this.setDefaultState(this.stateManager.getDefaultState().with(ACTIVE, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(ACTIVE); // Add the ACTIVE property
+        builder.add(ACTIVE); // Add the 'ACTIVE' property to the state manager
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        // Ensure we're on the server side
-        if (!world.isClient) {
-            // Get the item in the player's hand
-            ItemStack heldItem = player.getStackInHand(hand);
+        if (!world.isClient) { // Run only on the server side
+            ItemStack heldItem = player.getStackInHand(hand); // Get the item held by the player
+            boolean didCharge = false; // Tracks if any item was charged
 
-            // Check if the player is holding the energized staff
-            if (heldItem.getItem() == ModItems.ENERGIZED_STAFF) {
-                EffectEnergizedStaff staff = (EffectEnergizedStaff) heldItem.getItem();
+            // 1. Charge Energized Amethyst Armor
+            for (ItemStack armorStack : player.getArmorItems()) {
+                if (armorStack.getItem() instanceof EnergizedAmethystArmor energizedArmor) {
+                    int currentEnergy = energizedArmor.getEnergy(armorStack);
 
-                // Get the current energy using getEnergy
-                int currentEnergy = staff.getEnergy(heldItem);
-
-                // Define the max energy (you can also call `staff.MAX_ENERGY` directly if it's accessible)
-                int maxEnergy = 20000;
-
-                // Add 2000 energy but ensure it doesn't exceed the max
-                if (currentEnergy < maxEnergy) {
-                    int newEnergy = Math.min(currentEnergy + 2000, maxEnergy);
-
-                    // Use setEnergy to update the NBT
-                    staff.setEnergy(heldItem, newEnergy);
-
-                    // Provide feedback to the player
-                    world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-                    // Optionally set the block state to ACTIVE temporarily for visual feedback
-                    world.setBlockState(pos, state.with(ACTIVE, true));
-                    world.createAndScheduleBlockTick(pos, this, 20); // Reset after 20 ticks (1 second)
-
-                    return ActionResult.SUCCESS;
-                } else {
-                    // Notify the player if the staff is already fully charged
-                    player.sendMessage(Text.translatable("item.amethystplus.energized_staff.full"), true);
-                    return ActionResult.PASS;
+                    // Charge the armor if not fully charged
+                    if (currentEnergy < EnergizedAmethystArmor.MAX_ENERGY) {
+                        int newEnergy = Math.min(currentEnergy + 500, EnergizedAmethystArmor.MAX_ENERGY);
+                        energizedArmor.setEnergy(armorStack, newEnergy); // Update the armor's energy
+                        didCharge = true; // Indicate that something was charged
+                    }
                 }
             }
 
-            // Check if the player is holding an amethyst shard (keep original behavior)
-            if (heldItem.getItem() == Items.AMETHYST_SHARD) {
-                // Decrease the item stack by 1
-                heldItem.decrement(1);
+            // Provide feedback for armor charging
+            if (didCharge) {
+                player.sendMessage(
+                    Text.literal("Your Energized Armor pieces are being charged!").formatted(Formatting.GREEN),
+                    true // Action bar message
+                );
+                world.playSound(
+                    null, pos, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 0.8F, 1.0F
+                );
+            }
 
-                // Give the player a charged amethyst shard
-                if (!player.giveItemStack(new ItemStack(ModItems.CHARGED_AMETHYST_SHARD))) {
-                    // Drop the item in the world if the player's inventory is full
-                    player.dropItem(new ItemStack(ModItems.CHARGED_AMETHYST_SHARD), false);
+            // 2. Charge the Energized Staff
+            if (heldItem.getItem() instanceof EffectEnergizedStaff energizedStaff) {
+                int currentEnergy = energizedStaff.getEnergy(heldItem);
+
+                // Charge the staff if not fully charged
+                if (currentEnergy < EffectEnergizedStaff.MAX_ENERGY) {
+                    int newEnergy = Math.min(currentEnergy + 500, EffectEnergizedStaff.MAX_ENERGY);
+                    energizedStaff.setEnergy(heldItem, newEnergy); // Update the staff's NBT
+                    didCharge = true;
+
+                    // Provide feedback for staff charging
+                    player.sendMessage(
+                        Text.literal("Your Energized Staff is being charged!").formatted(Formatting.AQUA),
+                        true
+                    );
+                    world.playSound(
+                        null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F
+                    );
                 }
+            }
 
-                // Play a sound effect
-                world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            // 3. Fallback behavior: No items charged
+            if (!didCharge) {
+                player.sendMessage(
+                    Text.literal("The Charging Station hums softly. Nothing happens.").formatted(Formatting.YELLOW),
+                    true
+                );
+            }
 
-                // Optionally set the block state to ACTIVE temporarily (visual effect)
+            // Change block state to 'active' if any item was charged
+            if (didCharge && !state.get(ACTIVE)) {
                 world.setBlockState(pos, state.with(ACTIVE, true));
-                world.createAndScheduleBlockTick(pos, this, 20); // Reset after 20 ticks (1 second)
-
-                return ActionResult.SUCCESS;
             }
         }
 
-        return ActionResult.PASS;
-    }
-
-    public void scheduledTick(BlockState state, World world, BlockPos pos, java.util.Random random) {
-        // Reset the block state to not active
-        if (state.get(ACTIVE)) {
-            world.setBlockState(pos, state.with(ACTIVE, false));
-        }
+        // Always return SUCCESS for interaction
+        return ActionResult.SUCCESS;
     }
 }

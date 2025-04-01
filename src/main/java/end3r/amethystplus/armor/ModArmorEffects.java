@@ -11,49 +11,53 @@ import net.minecraft.server.world.ServerWorld;
 public class ModArmorEffects {
 
     public static void registerEffects() {
-        // Evento globale del server alla fine di ogni tick
+        // Server global event at the end of every tick
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             for (ServerWorld world : server.getWorlds()) {
-                // Esegui logica per ogni giocatore nel mondo
-                world.getPlayers().forEach(ModArmorEffects::applySlowFallingEffect);
+                // Apply logic for each player in the world
+                world.getPlayers().forEach(ModArmorEffects::applyEffects);
             }
         });
     }
 
-
-    private static void applySlowFallingEffect(PlayerEntity player) {
-        // Controlliamo il mondo (solo lato server per prestazioni)
+    // Apply both Slow Falling and Speed effects
+    private static void applyEffects(PlayerEntity player) {
+        // Ensure this logic runs on the server side only
         if (player.world.isClient() || !(player.world instanceof ServerWorld)) return;
 
-        // Verifica se il giocatore indossa il set completo
+        // Check if the player is wearing the full custom armor set
         if (isWearingFullCustomArmor(player)) {
-            // Aggiungi l'effetto di Slow Falling al giocatore
+            // Apply the Slow Falling effect
             player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.SLOW_FALLING,  // Effetto Slow Falling
-                    220,                        // Durata in tick (11 secondi)
-                    0,                          // Livello dell'effetto, 0 = primo livello
-                    true,                       // Effetto visibile (true per rimuovere particelle)
-                    false                       // Mantieni invisibile l'icona dell'effetto
+                    StatusEffects.SLOW_FALLING,  // Apply Slow Falling
+                    220,                        // Duration in ticks (11 seconds)
+                    0,                          // Effect level, 0 = level 1
+                    true,                       // Particles hidden (true = no particles)
+                    false                       // Effect icon hidden
             ));
+
         }
     }
 
+    // Check if the player is wearing the full custom armor set
     private static boolean isWearingFullCustomArmor(PlayerEntity player) {
-        // Verifica ogni pezzo dell'armatura
-        ItemStack helmet = player.getInventory().getArmorStack(3); // Slot per elmetto
-        ItemStack chestplate = player.getInventory().getArmorStack(2); // Slot per corazza
-        ItemStack leggings = player.getInventory().getArmorStack(1); // Slot per gambali
-        ItemStack boots = player.getInventory().getArmorStack(0); // Slot per stivali
+        // Get each armor piece from the player's inventory
+        ItemStack helmet = player.getInventory().getArmorStack(3);    // Helmet slot
+        ItemStack chestplate = player.getInventory().getArmorStack(2); // Chestplate slot
+        ItemStack leggings = player.getInventory().getArmorStack(1);  // Leggings slot
+        ItemStack boots = player.getInventory().getArmorStack(0);     // Boots slot
 
-        // Controlla se ogni pezzo corrisponde all'armatura personalizzata
+        // Verify each piece corresponds to the custom armor
         return isCustomArmor(helmet, ModArmors.AMETHYST_HELMET)
                 && isCustomArmor(chestplate, ModArmors.AMETHYST_CHESTPLATE)
                 && isCustomArmor(leggings, ModArmors.AMETHYST_LEGGINGS)
                 && isCustomArmor(boots, ModArmors.AMETHYST_BOOTS);
     }
 
-    // Metodo per confrontare un pezzo dell'armatura
+    // Helper method to verify if an armor piece matches the custom armor
     private static boolean isCustomArmor(ItemStack itemStack, Item armorItem) {
         return !itemStack.isEmpty() && itemStack.getItem() == armorItem;
     }
+
+
 }

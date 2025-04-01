@@ -17,7 +17,7 @@ import net.minecraft.entity.damage.DamageSource;
 import org.jetbrains.annotations.Nullable;
 
 public class EffectEnergizedStaff extends Item {
-    private static final int MAX_ENERGY = 20000; // Maximum energy the item can hold
+    public static final int MAX_ENERGY = 20000; // Maximum energy the item can hold
     private static final int ENERGY_PER_HIT = 200; // Energy cost per hit
 
     public EffectEnergizedStaff(Settings settings) {
