@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "amethystplus:charged_amethyst_shard"
+    },
+    "1": {
+      "item": "amethystplus:battery"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "X1X"
+  ],
+  "result": {
+    "item": "amethystplus:energized_amethyst_helmet"
+  }
+}

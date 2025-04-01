@@ -43,10 +43,10 @@ public class CustomArmorMaterial implements ArmorMaterial {
     }
 
 
-    @Override
+
     public String getName() {
-        String name = "amethystplus:amethyst";
-        return name;
+        String namemk0 = "amethystplus:amethyst";
+        return namemk0;
     }
 
     @Override

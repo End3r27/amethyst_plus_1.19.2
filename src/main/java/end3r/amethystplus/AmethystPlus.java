@@ -4,6 +4,7 @@ import end3r.amethystplus.armor.ModArmorEffects;
 import end3r.amethystplus.armor.ModArmorEffectsMK1;
 import end3r.amethystplus.armor.ModArmors;
 import end3r.amethystplus.block.ModBlocks;
+import end3r.amethystplus.item.CustomTooltip;
 import end3r.amethystplus.item.ModItemGroups;
 import end3r.amethystplus.item.ModItems;
 import net.fabricmc.api.ModInitializer;

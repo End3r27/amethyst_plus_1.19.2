@@ -1,10 +1,10 @@
 package end3r.amethystplus.block;
 
 import end3r.amethystplus.armor.EnergizedAmethystArmor;
-import end3r.amethystplus.item.EffectEnergizedStaff;
 import end3r.amethystplus.item.EffectEnergizedStaffMK2;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -21,6 +21,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ChargingStationBlockMK2 extends Block {
     // Optional property to visually indicate "charging"

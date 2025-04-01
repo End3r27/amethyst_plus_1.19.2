@@ -21,7 +21,7 @@ public class EnergizedAmethystArmor extends ArmorItem {
     private static final int ENERGY_DRAIN_PER_SECOND = 15; // Energy consumed per second
 
     public EnergizedAmethystArmor(EquipmentSlot slot, Settings settings) {
-        super(new CustomArmorMaterial(), slot, settings); // Uses a custom armor material
+        super(new CustomArmorMaterialMK1(), slot, settings); // Uses a custom armor material
     }
 
     // Get energy stored in the armor from NBT
@@ -101,6 +101,7 @@ public class EnergizedAmethystArmor extends ArmorItem {
             }
         }
     }
+
 }
 
 
