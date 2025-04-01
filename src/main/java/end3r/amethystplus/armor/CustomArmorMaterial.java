@@ -1,7 +1,11 @@
 package end3r.amethystplus.armor;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
@@ -38,14 +42,17 @@ public class CustomArmorMaterial implements ArmorMaterial {
         return Ingredient.ofItems(Items.AMETHYST_SHARD); // Item used for repairing the armor
     }
 
+
     @Override
     public String getName() {
-        return "amethystplus:amethyst"; // Used for texture path: "amethyst_layer_1" and "amethyst_layer_2"
+        String name = "amethystplus:amethyst";
+        return name;
     }
 
     @Override
     public float getToughness() {
         return 2.5F; // Diamond-like toughness
+
     }
 
     @Override

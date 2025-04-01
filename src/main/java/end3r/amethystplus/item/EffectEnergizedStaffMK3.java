@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class EffectEnergizedStaffMK3 extends Item {
-    private static final int MAX_ENERGY = 100000; // Maximum energy the item can hold
+    public static final int MAX_ENERGY = 100000; // Maximum energy the item can hold
     private static final int ENERGY_PER_HIT = 350; // Energy cost per hit
 
     public EffectEnergizedStaffMK3(Settings settings) {

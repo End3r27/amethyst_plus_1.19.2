@@ -15,8 +15,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class ChargingStationBlock extends Block {
@@ -85,6 +87,22 @@ public class ChargingStationBlock extends Block {
                     );
                 }
             }
+            // Check if the held item is an amethyst shard
+            if (heldItem.getItem() == Registry.ITEM.get(new Identifier("minecraft:amethyst_shard"))) {
+                if (!world.isClient) { // Run only on the server
+                    heldItem.decrement(1); // Remove one amethyst shard from the stack
+                    player.setStackInHand(hand, new ItemStack(Registry.ITEM.get(new Identifier("amethystplus:charged_amethyst_shard")))); // Add the charged shard
+                    world.playSound(
+                            null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F
+                    ); // Play sound
+                    player.sendMessage(
+                            Text.literal("Your shard has been charged!").formatted(Formatting.AQUA),
+                            true // Sends as an action bar message
+                    ); // Notify the player
+                    world.setBlockState(pos, state.with(ACTIVE, true)); // Set the active state
+                }
+                return ActionResult.SUCCESS;
+        }
 
             // 3. Fallback behavior: No items charged
             if (!didCharge) {

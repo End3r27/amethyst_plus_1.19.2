@@ -101,9 +101,7 @@ public class EnergizedAmethystArmor extends ArmorItem {
             }
         }
     }
-
-    @Environment(EnvType.CLIENT)
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return "amethystplus:textures/models/armor/energized_amethyst_layer_" + (slot == EquipmentSlot.LEGS ? "2" : "1") + ".png";
-    }
 }
+
+
+

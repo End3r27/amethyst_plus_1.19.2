@@ -42,9 +42,11 @@ public class CustomArmorMaterialMK1 implements ArmorMaterial {
         return Ingredient.ofItems(Items.AMETHYST_SHARD); // Item used for repairing the armor
     }
 
+
     @Override
     public String getName() {
-        return "amethystplus:energized_amethyst"; // Used for texture path: "amethyst_layer_1" and "amethyst_layer_2"
+        String name = "amethystplus:energized_amethyst";
+        return name;
     }
 
     @Override
