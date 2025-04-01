@@ -31,6 +31,16 @@ public class ModArmors {
     public static final Item ENERGIZED_AMETHYST_BOOTS = registerEnergizedArmor("energized_amethyst_boots",
             new CustomArmorMaterialMK1(), EquipmentSlot.FEET);
 
+    // Define energized MK2 armor items
+    public static final Item ENERGIZED_AMETHYST_HELMETMK2 = registerEnergizedArmorMK2("energized_amethyst_helmetmk2",
+            new CustomArmorMaterialMK2(), EquipmentSlot.HEAD);
+    public static final Item ENERGIZED_AMETHYST_CHESTPLATEMK2 = registerEnergizedArmorMK2("energized_amethyst_chestplatemk2",
+            new CustomArmorMaterialMK2(), EquipmentSlot.CHEST);
+    public static final Item ENERGIZED_AMETHYST_LEGGINGSMK2 = registerEnergizedArmorMK2("energized_amethyst_leggingsmk2",
+            new CustomArmorMaterialMK2(), EquipmentSlot.LEGS);
+    public static final Item ENERGIZED_AMETHYST_BOOTSMK2 = registerEnergizedArmorMK2("energized_amethyst_bootsmk2",
+            new CustomArmorMaterialMK2(), EquipmentSlot.FEET);
+
     /**
      * Method to register a regular armor item.
      *
@@ -56,6 +66,12 @@ public class ModArmors {
     private static Item registerEnergizedArmor(String name, CustomArmorMaterialMK1 customArmorMaterialMK1, EquipmentSlot slot) {
         return Registry.register(Registry.ITEM, new Identifier("amethystplus", name),
                 new EnergizedAmethystArmor(slot, // Use the custom EnergizedAmethystArmor class
+                        new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
+    }
+
+    private static Item registerEnergizedArmorMK2(String name, CustomArmorMaterialMK2 customArmorMaterialMK2, EquipmentSlot slot) {
+        return Registry.register(Registry.ITEM, new Identifier("amethystplus", name),
+                new EnergizedAmethystArmorMK2(slot, // Use the custom EnergizedAmethystArmor class
                         new FabricItemSettings().group(ModItemGroups.ENERGIZED_STAFF_GROUP)));
     }
 

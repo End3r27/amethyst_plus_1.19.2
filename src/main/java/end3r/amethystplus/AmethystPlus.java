@@ -2,6 +2,7 @@ package end3r.amethystplus;
 
 import end3r.amethystplus.armor.ModArmorEffects;
 import end3r.amethystplus.armor.ModArmorEffectsMK1;
+import end3r.amethystplus.armor.ModArmorEffectsMK2;
 import end3r.amethystplus.armor.ModArmors;
 import end3r.amethystplus.block.ModBlocks;
 import end3r.amethystplus.item.CustomTooltip;
@@ -25,6 +26,7 @@ public class AmethystPlus implements ModInitializer {
 		ModArmors.registerModArmor();
 		ModArmorEffects.registerEffects();
 		ModArmorEffectsMK1.registerEffects();
+		ModArmorEffectsMK2.registerEffects();
 
 
 
