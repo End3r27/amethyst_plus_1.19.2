@@ -40,7 +40,7 @@ public class CustomArmorMaterial implements ArmorMaterial {
 
     @Override
     public String getName() {
-        return "custom_armor"; // Used for texture path: "amethyst_layer_1" and "amethyst_layer_2"
+        return "amethystplus:amethyst"; // Used for texture path: "amethyst_layer_1" and "amethyst_layer_2"
     }
 
     @Override
