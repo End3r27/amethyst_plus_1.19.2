@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "amethystplus:hypercharged_amethyst_shard"
+    },
+    "1": {
+      "item": "amethystplus:batterymk3"
+    }
+  },
+  "pattern": [
+    "X1X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "item": "amethystplus:energized_amethyst_chestplatemk3"
+  }
+}

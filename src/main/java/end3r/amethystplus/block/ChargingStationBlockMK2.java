@@ -2,6 +2,7 @@ package end3r.amethystplus.block;
 
 import end3r.amethystplus.armor.EnergizedAmethystArmor;
 import end3r.amethystplus.armor.EnergizedAmethystArmorMK2;
+import end3r.amethystplus.armor.EnergizedAmethystArmorMK3;
 import end3r.amethystplus.item.EffectEnergizedStaffMK2;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -68,6 +69,20 @@ public class ChargingStationBlockMK2 extends Block {
                     // Charge the armor if not fully charged
                     if (currentEnergy < EnergizedAmethystArmorMK2.MAX_ENERGY) {
                         int newEnergy = Math.min(currentEnergy + 1000, EnergizedAmethystArmorMK2.MAX_ENERGY);
+                        energizedArmor.setEnergy(armorStack, newEnergy); // Update the armor's energy
+                        didCharge = true; // Indicate that something was charged
+                    }
+                }
+            }
+
+            // 1. Charge Energized Amethyst Armor MK3
+            for (ItemStack armorStack : player.getArmorItems()) {
+                if (armorStack.getItem() instanceof EnergizedAmethystArmorMK3 energizedArmor) {
+                    int currentEnergy = energizedArmor.getEnergy(armorStack);
+
+                    // Charge the armor if not fully charged
+                    if (currentEnergy < EnergizedAmethystArmorMK3.MAX_ENERGY) {
+                        int newEnergy = Math.min(currentEnergy + 1000, EnergizedAmethystArmorMK3.MAX_ENERGY);
                         energizedArmor.setEnergy(armorStack, newEnergy); // Update the armor's energy
                         didCharge = true; // Indicate that something was charged
                     }

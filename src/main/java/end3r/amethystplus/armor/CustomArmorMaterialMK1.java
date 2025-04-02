@@ -13,13 +13,13 @@ import net.minecraft.sound.SoundEvents;
 
 public class CustomArmorMaterialMK1 implements ArmorMaterial {
     // The base durability values for different slots
-    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11}; // Head, Chest, Legs, Feet
+    private static final int[] BASE_DURABILITY = new int[]{99, 99, 99, 99}; // Head, Chest, Legs, Feet
     // The protection values for each armor piece
     private static final int[] PROTECTION_VALUES = new int[]{2, 5, 6, 2}; // Head, Chest, Legs, Feet
 
     @Override
     public int getDurability(EquipmentSlot slot) {
-        return BASE_DURABILITY[slot.getEntitySlotId()] * 25; // Modify multiplier for durability
+        return BASE_DURABILITY[slot.getEntitySlotId()] * 999; // Modify multiplier for durability
     }
 
     @Override

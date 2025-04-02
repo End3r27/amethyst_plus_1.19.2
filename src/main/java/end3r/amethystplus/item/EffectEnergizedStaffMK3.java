@@ -103,9 +103,17 @@ public class EffectEnergizedStaffMK3 extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        // Retrieve the current energy level of the staff
         int energy = getEnergy(stack);
+
+        // Add the energy display tooltip
         MutableText energyText = Text.literal(energy + "AE / " + MAX_ENERGY + "AE").formatted(Formatting.AQUA);
         tooltip.add(energyText);
+
+        // Add the damage tooltip when the item is charged (has energy > 0)
+// Add the custom damage tooltip
+        MutableText damageText = Text.literal("+9 Damage when charged").formatted(Formatting.GRAY);
+        tooltip.add(damageText); // Append the custom damage tooltip
     }
     // Override inventoryTick() to apply Speed 2
 // Utility to get the energy percentage for rendering purposes

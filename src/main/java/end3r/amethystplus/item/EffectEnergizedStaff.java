@@ -36,7 +36,6 @@ public class EffectEnergizedStaff extends Item {
         nbt.putInt("Energy", Math.min(MAX_ENERGY, Math.max(0, energy))); // Ensure energy is between 0 and MAX_ENERGY
     }
 
-
     // Called when attacking an entity
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
@@ -84,8 +83,8 @@ public class EffectEnergizedStaff extends Item {
     @Override
     public int getItemBarColor(ItemStack stack) {
         return 0xAA00FF; // Purple color for the energy bar
-
     }
+
     @Override
     public boolean hasRecipeRemainder() {
         // Enable this item to have a remainder (it stays in the crafting grid)
@@ -102,6 +101,7 @@ public class EffectEnergizedStaff extends Item {
         }
         return stack; // Return the modified staff
     }
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         // Retrieve the current energy
@@ -113,12 +113,16 @@ public class EffectEnergizedStaff extends Item {
 
         // Add the energy text to the tooltip
         tooltip.add(energyText);
+
+        // Add a gray tooltip for "+5 damage"
+        MutableText damageText = Text.literal("+5 damage when charged")
+                .formatted(Formatting.GRAY); // Formats the text in gray
+        tooltip.add(damageText); // Append damage tooltip
     }
+
     // Utility to get the energy percentage for rendering purposes
     public float getEnergyPercentage(ItemStack stack) {
         int currentEnergy = getEnergy(stack);
         return (float) currentEnergy / MAX_ENERGY; // Returns a value between 0.0 and 1.0
     }
-
 }
-

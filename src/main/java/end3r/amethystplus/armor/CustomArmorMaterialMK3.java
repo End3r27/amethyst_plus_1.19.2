@@ -8,11 +8,11 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
-public class CustomArmorMaterialMK2 implements ArmorMaterial {
+public class CustomArmorMaterialMK3 implements ArmorMaterial {
     // The base durability values for different slots
     private static final int[] BASE_DURABILITY = new int[]{99, 99, 99, 99}; // Head, Chest, Legs, Feet
     // The protection values for each armor piece
-    private static final int[] PROTECTION_VALUES = new int[]{4, 8, 7, 3}; // Head, Chest, Legs, Feet
+    private static final int[] PROTECTION_VALUES = new int[]{5, 9, 8, 4}; // Head, Chest, Legs, Feet
 
     @Override
     public int getDurability(EquipmentSlot slot) {
@@ -36,14 +36,14 @@ public class CustomArmorMaterialMK2 implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(ModItems.OVERCHARGED_AMETHYST_SHARD); // Item used for repairing the armor
+        return Ingredient.ofItems(ModItems.HYPERCHARGED_AMETHYST_SHARD); // Item used for repairing the armor
     }
 
 
 
     public String getName() {
-        String namemk2 = "amethystplus:energized_amethystmk2";
-        return namemk2;
+        String namemk3 = "amethystplus:energized_amethystmk3";
+        return namemk3;
     }
 
     @Override
