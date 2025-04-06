@@ -1,3 +1,4 @@
+
 package end3r.amethystplus.item;
 
 import java.util.List;
@@ -106,10 +107,21 @@ public class EffectEnergizedStaff extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         // Retrieve the current energy
         int currentEnergy = getEnergy(stack);
+        float energyPercentage = (float) currentEnergy / MAX_ENERGY * 100;
+
+        // Determine the color based on the energy percentage
+        Formatting color;
+        if (energyPercentage >= 75) {
+            color = Formatting.GREEN;
+        } else if (energyPercentage >= 25) {
+            color = Formatting.YELLOW;
+        } else {
+            color = Formatting.RED;
+        }
 
         // Create the tooltip text with the energy values
-        MutableText energyText = Text.literal(currentEnergy + "AE / " + MAX_ENERGY + "AE")
-                .formatted(Formatting.AQUA); // Formats the text in aqua
+        MutableText energyText = Text.literal(currentEnergy + "AE / " + MAX_ENERGY + "AE (" + String.format("%.1f", energyPercentage) + "%)")
+                .formatted(color); // Formats the text with dynamic color
 
         // Add the energy text to the tooltip
         tooltip.add(energyText);

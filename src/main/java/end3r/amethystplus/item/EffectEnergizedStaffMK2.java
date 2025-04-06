@@ -101,17 +101,33 @@ public class EffectEnergizedStaffMK2 extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        // Retrieve the current energy level of the staff
-        int energy = getEnergy(stack);
+        // Retrieve the current energy
+        int currentEnergy = getEnergy(stack);
+        float energyPercentage = (float) currentEnergy / MAX_ENERGY * 100;
 
-        // Add the energy display tooltip
-        MutableText energyText = Text.literal(energy + "AE / " + MAX_ENERGY + "AE").formatted(Formatting.AQUA);
+        // Determine the color based on the energy percentage
+        Formatting color;
+        if (energyPercentage >= 75) {
+            color = Formatting.GREEN;
+        } else if (energyPercentage >= 25) {
+            color = Formatting.YELLOW;
+        } else {
+            color = Formatting.RED;
+        }
+
+        // Create the tooltip text with the energy values
+        MutableText energyText = Text.literal(currentEnergy + "AE / " + MAX_ENERGY + "AE (" + String.format("%.1f", energyPercentage) + "%)")
+                .formatted(color); // Formats the text with dynamic color
+
+        // Add the energy text to the tooltip
         tooltip.add(energyText);
 
-// Add the custom damage tooltip (always displayed)
-        MutableText damageText = Text.literal("+7 Damage when charged").formatted(Formatting.GRAY);
-        tooltip.add(damageText); // Append the custom damage tooltip
+        // Add a gray tooltip for "+5 damage"
+        MutableText damageText = Text.literal("+5 damage when charged")
+                .formatted(Formatting.GRAY); // Formats the text in gray
+        tooltip.add(damageText); // Append damage tooltip
     }
+
     // Utility to get the energy percentage for rendering purposes
     public float getEnergyPercentage(ItemStack stack) {
         int currentEnergy = getEnergy(stack);

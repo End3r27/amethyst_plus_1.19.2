@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ChargingStationBlockMK2 extends Block {
@@ -161,5 +162,17 @@ public class ChargingStationBlockMK2 extends Block {
 
         // Always return SUCCESS for interaction
         return ActionResult.SUCCESS;
+    }
+    @Override
+    public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
+        return Collections.singletonList(new ItemStack(this));
+    }
+
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+        if (!world.isClient) {
+            dropStacks(state, world, pos, null, player, player.getMainHandStack());
+        }
     }
 }
